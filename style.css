@@ -9,33 +9,137 @@
 html {
   font-size: 62.5%;
   /* *** Makes it so 1rem = 10px *** */
+}
 
+body {
   font-family: "Roboto Mono", monospace;
+  display: flex;
 }
 
-.wip-section {
+.webpage-root-element {
+  display: flex;
   position: relative;
-  width: 100vw;
+  flex-direction: row;
   height: 100vh;
-  background: rgb(34, 34, 34);
-  border: 10px solid rgb(37, 37, 37);
-  display: flex;
 }
 
-#wip-text {
+.social-side-bar {
+  background: rgb(26, 26, 26);
+
+  height: 100%;
+  width: 60px;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  z-index: 1; /* Makes side bar stay on top of page elements. */
+}
+
+.social-buttons {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
   align-items: center;
-  text-align: center;
-  background: rgb(70, 70, 70);
-  font-size: calc(20px + 2vw);
-  width: 100%;
-  min-height: 100%;
-  padding: 20px;
-  resize: both;
-  overflow: auto;
+}
+.social-buttons img {
+  margin: 5rem 0 5rem 0;
+  height: 3rem;
+  cursor: pointer;
+
+  transition: background 0.25s ease-in-out;
 }
 
-#under-construction-text {
-  color: #dea731;
+.social-buttons img:hover {
+  margin: 5rem 0 5rem 0;
+  height: 3rem;
+  cursor: pointer;
+  background: grey;
+  border-radius: 10px;
+}
+
+/* img.social-image-button {
+  cursor: pointer;
+  padding-top: 1rem;
+} */
+
+#linkedin-icon {
+  margin-top: 60vh;
+  bottom: 10rem;
+}
+
+.page-content {
+  border: 5px solid red;
+
+  /* Margin moved to the left for the sidebar */
+  margin-left: 60px;
+  width: calc(100vw - 60px);
+}
+
+nav {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+#logo {
+  padding: 2rem 50vw 2rem 2rem;
+  background: grey;
+  width: 40%;
+
+  font-size: 3rem;
+
+  /* Gets rid of text wrapping */
+  white-space: nowrap;
+}
+
+.nav-links {
+  background: #16a11f;
+
+  display: flex;
+
+  flex: 1 1 5rem;
+
+  justify-content: space-around;
+  align-items: center;
+
+  list-style: none;
+}
+
+.nav-links ul {
+  display: flex;
+  flex-direction: row;
+
+  text-decoration: none;
+  width: 60%;
+
+  list-style: none;
+}
+
+.nav-links ul li {
+  padding: 1rem 1rem;
+  justify-content: space-evenly;
+  font-size: calc(5px + 1vw);
+}
+
+.nav-links a {
+  color: violet;
+  text-decoration: none;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+.hero {
+  height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero .hero-text {
+  height: 100%;
+  display: flex;
+
+  padding: 3rem;
 }

@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+
+  /*Removes scroll bar (default is content-box)*/
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  /* *** Makes it so 1rem = 10px *** */
+
+  font-family: "Roboto Mono", monospace;
+}
+
+.wip-section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: rgb(34, 34, 34);
+  border: 10px solid rgb(37, 37, 37);
+  display: flex;
+}
+
+#wip-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: rgb(70, 70, 70);
+  font-size: calc(20px + 2vw);
+  width: 100%;
+  min-height: 100%;
+  padding: 20px;
+  resize: both;
+  overflow: auto;
+}
+
+#under-construction-text {
+  color: #dea731;
+}
