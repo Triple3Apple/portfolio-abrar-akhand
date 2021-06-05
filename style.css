@@ -26,11 +26,11 @@ body {
 .social-side-bar {
   background: rgb(26, 26, 26);
 
-  position: relative;
+  position: fixed;
 
   height: 100%;
   width: 80px;
-  position: fixed;
+
   top: 0;
   left: 0;
 
@@ -38,15 +38,17 @@ body {
 }
 
 .social-buttons {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
+  width: 80px;
+  left: 0;
+  bottom: 5rem;
+  position: fixed;
 }
 
 .social-button-container {
   background: none;
+
+  position: relative;
+  left: 10%;
 
   width: 60%;
   height: 60%;
@@ -60,24 +62,27 @@ body {
 }
 
 .social-button-container:hover {
-  background: rgb(36, 36, 36);
+  background: rgb(44, 44, 44);
 }
 
 .social-buttons img {
   display: block;
+  position: relative;
 
   margin: auto;
 
   height: 100%;
   width: 100%;
   cursor: pointer;
+  top: 10%;
 }
 
 .sparkle-image-button {
   position: relative;
   text-align: center;
-  font-size: 1.8rem;
+  font-size: 2rem;
   left: -2px;
+  top: -3px;
 }
 
 /* img.social-image-button {
@@ -86,8 +91,8 @@ body {
 } */
 
 .empty-social-container {
-  margin-top: 70vh;
-  bottom: 10rem;
+  position: relative;
+  bottom: 100vh;
 }
 
 .page-content {
@@ -95,10 +100,17 @@ body {
 
   /* Margin moved to the left for the sidebar */
   margin-left: 80px;
+  width: calc(100vw - 80px);
+}
+
+header {
+  position: relative;
   width: 100%;
+  position: relative;
 }
 
 nav {
+  width: 100%;
   position: relative;
   display: flex;
   flex-direction: row;
@@ -116,6 +128,8 @@ nav {
 }
 
 .nav-links {
+  width: 60%;
+
   background: #16a11f;
 
   display: flex;
@@ -133,7 +147,6 @@ nav {
   flex-direction: row;
 
   text-decoration: none;
-  width: 60%;
 
   list-style: none;
 }
