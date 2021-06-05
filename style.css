@@ -26,8 +26,10 @@ body {
 .social-side-bar {
   background: rgb(26, 26, 26);
 
+  position: relative;
+
   height: 100%;
-  width: 60px;
+  width: 80px;
   position: fixed;
   top: 0;
   left: 0;
@@ -38,23 +40,44 @@ body {
 .social-buttons {
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
 }
-.social-buttons img {
-  margin: 5rem 0 5rem 0;
-  height: 3rem;
+
+.social-button-container {
+  background: none;
+
+  width: 60%;
+  height: 60%;
+  position: relative;
+  padding: 1.25rem;
+  margin: 0.5rem;
+  border-radius: 5px;
   cursor: pointer;
 
   transition: background 0.25s ease-in-out;
 }
 
-.social-buttons img:hover {
-  margin: 5rem 0 5rem 0;
-  height: 3rem;
+.social-button-container:hover {
+  background: rgb(36, 36, 36);
+}
+
+.social-buttons img {
+  display: block;
+
+  margin: auto;
+
+  height: 100%;
+  width: 100%;
   cursor: pointer;
-  background: grey;
-  border-radius: 10px;
+}
+
+.sparkle-image-button {
+  position: relative;
+  text-align: center;
+  font-size: 1.8rem;
+  left: -2px;
 }
 
 /* img.social-image-button {
@@ -62,17 +85,17 @@ body {
   padding-top: 1rem;
 } */
 
-#linkedin-icon {
-  margin-top: 60vh;
+.empty-social-container {
+  margin-top: 70vh;
   bottom: 10rem;
 }
 
 .page-content {
-  border: 5px solid red;
+  /* border: 5px solid red; */
 
   /* Margin moved to the left for the sidebar */
-  margin-left: 60px;
-  width: calc(100vw - 60px);
+  margin-left: 80px;
+  width: 100%;
 }
 
 nav {
