@@ -202,7 +202,7 @@ nav {
 .hero-title {
   font-family: "weeblysleek";
   color: aliceblue;
-  font-size: 4rem;
+  font-size: calc(2.4rem + 1.5vw);
   font-weight: 800;
   text-shadow: 0 0 5px #272727e3;
   margin: 0;
@@ -214,12 +214,12 @@ nav {
 .hero-text {
   font-family: "weeblysleek";
   color: aliceblue;
-  font-size: 3rem;
+  font-size: calc(1.2rem + 1.5vw);
   display: block;
-  vertical-align: baseline;
+
   margin: 0;
   font-weight: 300;
-  line-height: 3rem;
+  line-height: 4rem;
 
   padding: 3rem;
 }

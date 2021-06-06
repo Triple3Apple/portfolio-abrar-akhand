@@ -1,4 +1,6 @@
 
+let flockSize;
+
 let flock;
 let winWidth, winHeight;
 
@@ -6,14 +8,21 @@ function setup() {
     winWidth = window.innerWidth - 80;
     winHeight = window.innerHeight - 80;
 
+
+    flockSize = Math.round(map(winWidth, 100, 1440, 10, 60, true));
+
+
+
     var cnv = createCanvas(winWidth, winHeight);
     //cnv.clear();  // new
     cnv.style('display', 'block');
     cnv.parent('boids-sketch');
 
+    console.log(flockSize);
+
     flock = new Flock();
     // Add an initial set of boids into the system
-    for (let i = 0; i < 75; i++) {
+    for (let i = 0; i < flockSize; i++) {
         let b = new Boid(width / 2, height / 2);
         flock.addBoid(b);
     }
@@ -30,18 +39,15 @@ function draw() {
 function windowResized() {
 
     console.log('window resized');
-    winWidth = window.innerWidth - 80;
-    winHeight = window.innerHeight - 80;
-    cnv = createCanvas(winWidth, winHeight);
+    setup();
 
-    cnv.style('display', 'block');
-    cnv.parent('boids-sketch');
+
 }
 
 // Add a new boid into the System
-function mouseDragged() {
-    flock.addBoid(new Boid(mouseX, mouseY));
-}
+// function mouseDragged() {
+//     flock.addBoid(new Boid(mouseX, mouseY));
+// }
 
 // The Nature of Code
 // Daniel Shiffman
