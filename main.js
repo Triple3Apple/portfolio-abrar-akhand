@@ -31,9 +31,18 @@ $(document).ready(function () {
     // Credit to: https://css-tricks.com/snippets/jquery/make-entire-div-clickable/
     $(".bottom-nav-btn").click(function () {
         console.log('btn pushed');
-        window.location = $(this).find("a").attr("href");
+        locationToScroll = $(this).find("a").attr("href");
+
+        // Using jQuery's animate() method to add smooth page scroll since smooth scroll is not supported in safari
+
+        $('html, body').animate({
+            scrollTop: $(locationToScroll).offset().top
+        }, 800);
+
         return false;
+
     });
+
 
     // Determines the current location of the user utilizing the the page scroll position.  
     $(window).scroll(function () {
