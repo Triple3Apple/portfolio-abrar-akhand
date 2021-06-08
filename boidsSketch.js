@@ -6,12 +6,9 @@ let winWidth, winHeight;
 
 function setup() {
     winWidth = window.innerWidth - 80;
-    winHeight = window.innerHeight - 80;
-
+    winHeight = window.innerHeight;
 
     flockSize = Math.round(map(winWidth, 100, 1440, 10, 60, true));
-
-
 
     var cnv = createCanvas(winWidth, winHeight);
     //cnv.clear();  // new

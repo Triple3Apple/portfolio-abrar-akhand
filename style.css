@@ -22,6 +22,7 @@
 
 html {
   font-size: 62.5%;
+  overflow-x: hidden;
   /* *** Makes it so 1rem = 10px *** */
 }
 
@@ -65,7 +66,7 @@ body {
   height: 60%;
   position: relative;
   padding: 1.25rem;
-  margin: 0.5rem;
+  margin: 1.75rem 0.75rem;
   border-radius: 5px;
   cursor: pointer;
 
@@ -113,60 +114,18 @@ body {
   /* Margin moved to the left for the sidebar */
   left: 80px;
   width: calc(100vw - 80px);
-  height: 100vh;
+
   /* background: brown; */
 }
-
+/* 
 header {
   position: relative;
-}
+} */
 
-nav {
-  display: flex;
-  flex-direction: row;
-  min-height: 10vh;
-
-  /* Padding makes it so that the height does not get anymore squished bc of the padding */
-  padding: 2rem;
-}
-
-.nav-links {
-  background: #16a11f;
-
-  display: flex;
-
-  flex: 1 1 5rem;
-
-  justify-content: space-around;
-  align-items: center;
-}
-
-.nav-links ul {
-  display: flex;
-  flex-direction: row;
-
-  text-decoration: none;
-
-  list-style: none;
-}
-
-.nav-links ul li {
-  padding: 1rem 1rem;
-  justify-content: space-evenly;
-  font-size: calc(5px + 1vw);
-}
-
-.nav-links a {
-  color: violet;
-  text-decoration: none;
-}
-
-.nav-links a:hover {
-  text-decoration: underline;
-}
+/* Hero section styling */
 
 .hero {
-  min-height: 90vh;
+  min-height: 100vh;
 
   background-repeat: no-repeat;
   background-size: cover;
@@ -224,7 +183,59 @@ nav {
   padding: 3rem;
 }
 
-#boids-sketch {
+#boids-sketch,
+#defaultCanvas0 {
   position: absolute;
   z-index: -1;
+}
+
+/* Bottom Nav Styling (Desktop only) */
+
+.bottom-nav-container {
+  width: calc(100vw - 80px);
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  top: 80vh;
+  justify-content: center;
+  z-index: 1;
+}
+
+.bottom-nav-btn {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 1rem 10vw;
+  z-index: 2;
+  background: grey;
+}
+
+.btm-nav-text {
+  position: relative;
+  /* Lower nav text a bit */
+  top: 15px;
+  font-family: "weeblysleek";
+  font-size: 2.75rem;
+  text-align: center;
+}
+
+.btm-nav-image {
+  width: 20rem;
+}
+
+/* Skills section styling */
+
+.skills-section {
+  position: relative;
+  min-height: 100vh;
+  background: darkslategray;
+}
+
+/* Projects section styling */
+
+.projects-section {
+  position: relative;
+  min-height: 100vh;
+  background: darkkhaki;
 }
