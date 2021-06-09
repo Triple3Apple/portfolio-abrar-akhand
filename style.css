@@ -173,12 +173,12 @@ header {
 .hero-text {
   font-family: "weeblysleek";
   color: aliceblue;
-  font-size: calc(1.2rem + 1.5vw);
+  font-size: calc(1rem + 1.2vw);
   display: block;
 
   margin: 0;
   font-weight: 300;
-  line-height: 4rem;
+  line-height: calc(3rem + 1vw);
 
   padding: 3rem;
 }
@@ -187,6 +187,50 @@ header {
 #defaultCanvas0 {
   position: absolute;
   z-index: -1;
+}
+
+/* Top nav styling (Desktop only) */
+
+.top-nav-container {
+  width: calc(100vw - 80px);
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  bottom: 80vh;
+  justify-content: center;
+  z-index: 1;
+}
+
+.top-nav-btn {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 1rem 10vw;
+  z-index: 2;
+  background: grey;
+
+  opacity: 1;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.top-nav-image {
+  width: 20rem;
+}
+
+.top-nav-text {
+  position: relative;
+  /* move nav text higher */
+  top: -15px;
+  font-family: "weeblysleek";
+  font-size: 2.75rem;
+  text-align: center;
+}
+
+.top-nav-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-20vh);
 }
 
 /* Bottom Nav Styling (Desktop only) */
@@ -209,6 +253,10 @@ header {
   margin: 1rem 10vw;
   z-index: 2;
   background: grey;
+
+  opacity: 1;
+  /* Smooth appear/disappear transition */
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .btm-nav-text {
@@ -222,6 +270,12 @@ header {
 
 .btm-nav-image {
   width: 20rem;
+}
+
+.bottom-nav-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20vh);
 }
 
 /* Skills section styling */
