@@ -196,7 +196,7 @@ header {
   position: fixed;
   display: flex;
   flex-direction: row;
-  bottom: 80vh;
+  bottom: 88vh;
   justify-content: center;
   z-index: 1;
 }
@@ -208,14 +208,31 @@ header {
   justify-content: center;
   margin: 1rem 10vw;
   z-index: 2;
-  background: grey;
+  background: none;
 
   opacity: 1;
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-.top-nav-image {
-  width: 20rem;
+.top-nav-img-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: TopNavIdle 2s ease-in-out infinite;
+}
+
+.top-nav-image1,
+.top-nav-image2 {
+  position: relative;
+  width: 10rem;
+}
+
+.top-nav-image1 {
+  top: 8rem;
+}
+
+.top-nav-image2 {
+  top: 2rem;
 }
 
 .top-nav-text {
@@ -240,8 +257,9 @@ header {
   position: fixed;
   display: flex;
   flex-direction: row;
-  top: 80vh;
+  top: 88vh; /* Was 80vh */
   justify-content: center;
+  align-items: center;
   z-index: 1;
 }
 
@@ -252,11 +270,15 @@ header {
   justify-content: center;
   margin: 1rem 10vw;
   z-index: 2;
-  background: grey;
+  background: none;
 
   opacity: 1;
   /* Smooth appear/disappear transition */
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition: opacity 0.4s ease, transform 0.4s ease, color 0.3s ease;
+}
+
+.bottom-nav-btn:hover {
+  color: #3c3c50;
 }
 
 .btm-nav-text {
@@ -268,8 +290,25 @@ header {
   text-align: center;
 }
 
-.btm-nav-image {
-  width: 20rem;
+.btm-nav-img-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: BtmNavIdle 2s ease-in-out infinite;
+}
+
+.btm-nav-image1,
+.btm-nav-image2 {
+  position: relative;
+  width: 10rem;
+}
+
+.btm-nav-image1 {
+  bottom: 1rem;
+}
+
+.btm-nav-image2 {
+  bottom: 7rem;
 }
 
 .bottom-nav-hidden {
@@ -292,4 +331,26 @@ header {
   position: relative;
   min-height: 100vh;
   background: darkkhaki;
+}
+
+/* Animations */
+
+@keyframes BtmNavIdle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+@keyframes TopNavIdle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
 }
