@@ -125,6 +125,8 @@ header {
 /* Hero section styling */
 
 .hero {
+  visibility: hidden;
+
   min-height: 100vh;
 
   background-repeat: no-repeat;
@@ -153,9 +155,11 @@ header {
   text-align: center;
   vertical-align: baseline; */
 
-  background: #353535;
+  background: #454545;
   min-width: 300px;
   width: 40%;
+
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .hero-title {
@@ -182,6 +186,8 @@ header {
 
   padding: 3rem;
 }
+
+/* Hero Boids Background Styling */
 
 #boids-sketch,
 #defaultCanvas0 {

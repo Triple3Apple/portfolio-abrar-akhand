@@ -1,45 +1,322 @@
 
 let flockSize;
 
-let flock;
+var flock = [];
 let winWidth, winHeight;
 
+// making it 11 since 0 index will not be used
+
+
 function setup() {
+    flock = [];
     winWidth = window.innerWidth - 80;
     winHeight = window.innerHeight;
 
     flockSize = Math.round(map(winWidth, 100, 1440, 10, 60, true));
 
     var cnv = createCanvas(winWidth, winHeight);
-    //cnv.clear();  // new
     cnv.style('display', 'block');
     cnv.parent('boids-sketch');
 
-    console.log(flockSize);
+    // new
 
-    flock = new Flock();
-    // Add an initial set of boids into the system
+
+    // TODO: Remove below line
+    flockSize = 20;
+
+
     for (let i = 0; i < flockSize; i++) {
-        let b = new Boid(width / 2, height / 2);
-        flock.addBoid(b);
+        flock.push(new Boid());
     }
-}
 
+    // vid 8:53
+
+}
+/*
+console.log(flockSize);
+
+flock = new Flock();
+// Add an initial set of boids into the system
+for (let i = 0; i < flockSize; i++) {
+    let b = new Boid(width / 2, height / 2);
+
+    // new -----------
+    console.log(b);
+
+    let column = int(b.position.x) / 10;
+    let row = int(b.position.y) / 10;
+    boidGrid[column][row].push(b);
+
+    //----------------
+
+
+    flock.addBoid(b);
+}
+ 
+}
+*/
+
+// TODO: Remove below
+var outputted = false;
 
 
 function draw() {
     frameRate(60);
-    background(100);
-    flock.run();
+    background('#2C2C2C');
+
+    // creating a 2d array for holding boid objects at the corresponding column and row index
+    let boidCells = new Array(11);
+
+    for (let i = 0; i < boidCells.length; i++) {
+        boidCells[i] = new Array(1); // for holding the row index
+    }
+
+    if (outputted === false) {
+
+        let columnsNum = 10;
+        let rowsNum = 10;
+        // ceil --> round up number
+        let columnCellSize = Math.ceil(winWidth / columnsNum);
+        let rowCellSize = Math.ceil(winHeight / rowsNum);
+
+
+
+        for (let boid of flock) {
+            console.log('in for loop');
+            // Organize each boid into a quadrant (row & column index)
+
+            // column index = ceiling round(x position / x cell/quadrant width)
+            console.log(`boid x position = ${boid.position.x}   columnCellSize = ${columnCellSize}`);
+            let columnIndex = Math.ceil(boid.position.x / columnCellSize);
+
+            // row index = ceiling round(y position / y cell/quadrant width)
+            let rowIndex = Math.ceil(boid.position.y / rowCellSize);
+
+            console.log(`rowIndex = ${rowIndex}   colIndex = ${columnIndex}`);
+            // boidCells[columnIndex][rowIndex].push(boid);
+
+            // create a array at the 2d array index and push the boid into it
+            boidCells[columnIndex][rowIndex] = [];
+            boidCells[columnIndex][rowIndex].push(boid);
+        }
+
+        for (let boid of flock) {
+            boid.checkEdgeBoundaries();
+
+            // Below line needs to be optimized
+            boid.applyBoidProperties(flock);
+            boid.update();
+            boid.show();
+        }
+
+        console.log(boidCells);
+        outputted = true;
+    }
+
 }
 
 function windowResized() {
 
     console.log('window resized');
     setup();
+}
+
+// ------------------------------------------------
+class Boid {
+    constructor() {
+        // boid will spawn in the middle of the canvas
+        this.position = createVector(random(winWidth), random(winHeight));
+        this.velocity = p5.Vector.random2D();
+        this.velocity.setMag(random(2, 4))
+        this.acceleration = createVector();
+        this.column
+
+        // TODO: Make separate force values for cohesion, alignment and ...
+        // maxForce determines how much each boid will be attracted to each other 
+        // Higher values increase attraction
+        this.maxForce = 0.2;
+
+        this.maxSpeed = 3;
+
+        // Cool things, maxForce set to 1 and speed to 5 and just apply seperation.
+    }
+
+    // Handle when boids hit edges
+    checkEdgeBoundaries() {
+        if (this.position.x > winWidth) {
+            this.position.x = 0;
+        } else if (this.position.x < 0) {
+            this.position.x = winWidth;
+        }
+
+        if (this.position.y > winHeight) {
+            this.position.y = 0;
+        } else if (this.position.y < 0) {
+            this.position.y = winHeight;
+        }
+    }
+
+    applyBoidProperties(boids) {
+        // Reset acceleration since the acceleration should not accumulate
+        //this.acceleration.set(0, 0);
+        // below does the same thing as above, multiplying a vector makes it zero
+        this.acceleration.mult(0);
+
+
+        let alignment = this.align(boids);
+        let cohesion = this.applyCohesion(boids);
+        //this.acceleration = Math.sqrt(Math.pow(alignment, 2) + Math.pow(cohesion, 2));
+
+        let separation = this.applySeparation(boids)
+
+
+        // Add the forces together (sum the forces)
+        // NOTE: Since mass is equal for all (1), acceleration is the force value
+        // F = m * a   --->     F = 1 * a    --->    F = a
+        this.acceleration.add(separation);
+        this.acceleration.add(alignment);
+        this.acceleration.add(cohesion);
+    }
+
+    // this function will align this boid with all the other boids
+    // Steer towards the average heading of local flockmates/boids - Craig Reynolds
+    align(boids) {
+        let perceptionRadius = 50;
+
+        let steeringForce = createVector();
+
+        let total = 0;
+
+        // TODO: Optimize later
+        for (let other of boids) {
+
+            let d = dist(this.position.x, this.position.y, other.position.x, other.position.y);
+            if (d < perceptionRadius && other != this) {
+
+                // adding all the velocity "vectors" into steeringForce, will be used to find average velocity of boids in its perceptions range
+                steeringForce.add(other.velocity);
+
+                total++;
+            }
+
+        }
+
+        // only divide when there atleast one boid in the perception range
+        if (total > 0) {
+            steeringForce.div(total);
+            steeringForce.setMag(this.maxSpeed);
+            steeringForce.sub(this.velocity);
+            steeringForce.limit(this.maxForce);
+        }
+
+        return steeringForce;
+
+    }
+
+    applyCohesion(boids) {
+        let perceptionRadius = 50;
+
+        let steeringForce = createVector();
+
+        let total = 0;
+
+        // TODO: Optimize later
+        for (let other of boids) {
+
+            let d = dist(this.position.x, this.position.y, other.position.x, other.position.y);
+            if (d < perceptionRadius && other != this) {
+                // adding all the position "vectors" into steeringForce, will be used to find average velocity of boids in its perceptions range
+                steeringForce.add(other.position);
+
+                total++;
+            }
+
+        }
+
+        // only divide when there atleast one boid in the perception range
+        if (total > 0) {
+            steeringForce.div(total);
+
+            steeringForce.sub(this.position);
+
+            steeringForce.setMag(this.maxSpeed);
+            steeringForce.sub(this.velocity);
+            steeringForce.limit(this.maxForce);
+        }
+
+        return steeringForce;
+    }
+
+    // Steer to avoid crowding local flock-mates - Craig Reynolds
+    applySeparation(boids) {
+
+        let perceptionRadius = 50;
+
+        let steeringForce = createVector();
+
+        let total = 0;
+
+        // TODO: Optimize later
+        for (let other of boids) {
+
+            let d = dist(this.position.x, this.position.y, other.position.x, other.position.y);
+
+            // d (distance from other boid has to be within the perception radius)
+            // AND the other boid cant be the one we are already analyzing
+            if (d < perceptionRadius && other != this) {
+
+                // p5.Vector.sub( __ , __ ) ==> Subtract two vectors and gets a new vector
+                let diff = p5.Vector.sub(this.position, other.position);
+
+                // Make it so the vector diff is inversely proportionate to the distance
+                // EX: larger distance to other boid = smaller diff vector,
+                //     smaller distance to another boid = larger diff vector
+                // diff.mult(1 / d)
+                diff.div(d);
+
+                // adding the diff vector to get sum later
+                steeringForce.add(diff);
+
+                total++;
+            }
+
+        }
+
+        // only divide when there at least one boid in the perception range
+        if (total > 0) {
+            steeringForce.div(total);
+
+            steeringForce.setMag(this.maxSpeed);
+            steeringForce.sub(this.velocity);
+            steeringForce.limit(0.25);
+        }
+
+        return steeringForce;
+
+    }
+
+    update() {
+        this.position.add(this.velocity);
+        this.velocity.add(this.acceleration);
+        this.velocity.limit(this.maxSpeed)
+    }
+
+    show() {
+        strokeWeight(8);
+        stroke(255);
+        point(this.position.x, this.position.y)
+
+    }
+
+
+
 
 
 }
+
+
+
+
 
 // Add a new boid into the System
 // function mouseDragged() {
@@ -52,7 +329,7 @@ function windowResized() {
 
 // Flock object
 // Does very little, simply manages the array of all the boids
-
+/*
 function Flock() {
     // An array for all the boids
     this.boids = []; // Initialize the array
@@ -60,7 +337,13 @@ function Flock() {
 
 Flock.prototype.run = function () {
     // TODO: Fix this (Very Bad Performance O(n^2))
+
+
+
     for (let i = 0; i < this.boids.length; i++) {
+
+
+
         this.boids[i].run(this.boids);  // Passing the entire list of boids to each boid individually
     }
 }
@@ -139,8 +422,10 @@ Boid.prototype.seek = function (target) {
 Boid.prototype.render = function () {
     // Draw a triangle rotated in the direction of velocity
     let theta = this.velocity.heading() + radians(90);
-    fill(127);
-    stroke(200);
+
+    // Shape Color
+    fill('#03DAC6');
+    stroke('#000000');
     push();
     translate(this.position.x, this.position.y);
     rotate(theta);
@@ -252,4 +537,5 @@ Boid.prototype.cohesion = function (boids) {
     }
 }
 
+*/
 
