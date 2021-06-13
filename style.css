@@ -114,6 +114,7 @@ body {
   /* Margin moved to the left for the sidebar */
   left: 80px;
   width: calc(100vw - 80px);
+  height: 100%;
 
   /* background: brown; */
 }
@@ -202,9 +203,10 @@ header {
   position: fixed;
   display: flex;
   flex-direction: row;
-  bottom: 88vh;
+  top: 1px;
   justify-content: center;
   z-index: 1;
+  height: 100px;
 }
 
 .top-nav-btn {
@@ -234,17 +236,17 @@ header {
 }
 
 .top-nav-image1 {
-  top: 8rem;
+  top: 3rem;
 }
 
 .top-nav-image2 {
-  top: 2rem;
+  top: -3rem;
 }
 
 .top-nav-text {
   position: relative;
   /* move nav text higher */
-  top: -15px;
+  top: -6rem;
   font-family: "weeblysleek";
   font-size: 2.75rem;
   text-align: center;
@@ -263,10 +265,11 @@ header {
   position: fixed;
   display: flex;
   flex-direction: row;
-  top: 88vh; /* Was 80vh */
+  bottom: 1px; /* Was 80vh */
   justify-content: center;
   align-items: center;
   z-index: 1;
+  height: 100px;
 }
 
 .bottom-nav-btn {
@@ -290,7 +293,7 @@ header {
 .btm-nav-text {
   position: relative;
   /* Lower nav text a bit */
-  top: 15px;
+  bottom: -5.5rem;
   font-family: "weeblysleek";
   font-size: 2.75rem;
   text-align: center;
@@ -310,11 +313,11 @@ header {
 }
 
 .btm-nav-image1 {
-  bottom: 1rem;
+  bottom: -3.5rem;
 }
 
 .btm-nav-image2 {
-  bottom: 7rem;
+  bottom: 2.5rem;
 }
 
 .bottom-nav-hidden {
@@ -328,7 +331,14 @@ header {
 .skills-section {
   position: relative;
   min-height: 100vh;
+  height: 100%;
   background: darkslategray;
+}
+
+.section-title {
+  position: relative;
+  height: 10%;
+  background: red;
 }
 
 /* Projects section styling */

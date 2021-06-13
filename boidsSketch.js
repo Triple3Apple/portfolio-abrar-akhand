@@ -65,10 +65,10 @@ function draw() {
     background('#2C2C2C');
 
     // creating a 2d array for holding boid objects at the corresponding column and row index
-    let boidCells = new Array(11);
+    let boidCells = new Array(10);
 
     for (let i = 0; i < boidCells.length; i++) {
-        boidCells[i] = new Array(1); // for holding the row index
+        boidCells[i] = [new Array(1)]; // for holding the row index
     }
 
     if (outputted === false) {
@@ -76,21 +76,25 @@ function draw() {
         let columnsNum = 10;
         let rowsNum = 10;
         // ceil --> round up number
+
+        // TODO: might need to change to floor?
         let columnCellSize = Math.ceil(winWidth / columnsNum);
         let rowCellSize = Math.ceil(winHeight / rowsNum);
 
 
+        let columnIndex;
+        let rowIndex;
 
         for (let boid of flock) {
             console.log('in for loop');
             // Organize each boid into a quadrant (row & column index)
 
-            // column index = ceiling round(x position / x cell/quadrant width)
+            // column index = floor round(x position / x cell or quadrant width)
             console.log(`boid x position = ${boid.position.x}   columnCellSize = ${columnCellSize}`);
-            let columnIndex = Math.ceil(boid.position.x / columnCellSize);
+            let columnIndex = Math.floor(boid.position.x / columnCellSize);
 
             // row index = ceiling round(y position / y cell/quadrant width)
-            let rowIndex = Math.ceil(boid.position.y / rowCellSize);
+            let rowIndex = Math.floor(boid.position.y / rowCellSize);
 
             console.log(`rowIndex = ${rowIndex}   colIndex = ${columnIndex}`);
             // boidCells[columnIndex][rowIndex].push(boid);
@@ -98,13 +102,30 @@ function draw() {
             // create a array at the 2d array index and push the boid into it
             boidCells[columnIndex][rowIndex] = [];
             boidCells[columnIndex][rowIndex].push(boid);
+
+            // make boid object keep track of its col and row index
+            boid.column = columnIndex;
+            boid.row = rowIndex;
         }
 
         for (let boid of flock) {
             boid.checkEdgeBoundaries();
 
+
+
+            //const boidCellX = boid.column;
+            //const boidCellY = boid.row;
+
+
+            // find and store nearby boids
+            let nearbyBoidsArray = getNearbyBoids(boid.column, boid.row, boidCells, boid, rowsNum, columnsNum);
+
+            console.log(nearbyBoidsArray);
+
+
             // Below line needs to be optimized
             boid.applyBoidProperties(flock);
+
             boid.update();
             boid.show();
         }
@@ -121,6 +142,88 @@ function windowResized() {
     setup();
 }
 
+function getNearbyBoids(boidCellX, boidCellY, boidCells, boid, rows, columns) {
+
+
+    console.log(boidCells);
+
+    let nearbyBoids = [];
+
+    let newX;
+    let newY;
+
+    console.table(boidCells);
+    // current cell
+    if (boidCells[boid.column][boid.row].length != 0) {
+        nearbyBoids = nearbyBoids.concat(boidCells[boid.column][boid.row]);
+    }
+
+    // top cell
+    newY = (boidCellY + 1 < rows) ? boidCellY + 1 : 0;
+    console.log(boidCells[boidCellX][newY]);
+    let topBoidCell = []
+    topBoidCell = topBoidCell.concat(boidCells[boidCellX][newY]);
+
+    if (topBoidCell.length != 0) {
+        nearbyBoids = nearbyBoids.concat(topBoidCell);
+    }
+
+    // top-right cell
+    newX = (boidCellX + 1 < columns) ? boidCellX + 1 : 0;
+    let topRightBoidCell = boidCells[newY][newX];
+
+    if (boidCells[newY][newX].length != 0) {
+        nearbyBoids = nearbyBoids.concat(topRightBoidCell);
+    }
+
+    // right cell
+    let rightBoidCell = boidCells[newX][boidCellY];
+
+    if (rightBoidCell.length != 0) {
+        nearbyBoids = nearbyBoids.concat(rightBoidCell);
+    }
+
+    // bottom-right cell
+    newY = (boidCellY - 1 >= 0) ? boidCellY - 1 : rows - 1;
+    let bottomRightCell = boidCells[newX][newY];
+
+    if (bottomRightCell.length != 0) {
+        nearbyBoids = nearbyBoids.concat(bottomRightCell);
+    }
+
+    // bottom cell
+    let bottomCell = boidCells[boidCellX][newY];
+
+    if (bottomCell.length != 0) {
+        nearbyBoids = nearbyBoids.concat(bottomCell);
+    }
+
+    // bottom-left cell
+    newX = (boidCellX - 1 >= 0) ? boidCellX - 1 : columns - 1;
+    let bottomLeftCell = boidCells[newX][newY];
+
+    if (bottomLeftCell.length != 0) {
+        nearbyBoids = nearbyBoids.concat(bottomLeftCell);
+    }
+
+    // left cell
+    let leftCell = boidCells[newX][boidCellY];
+
+    if (leftCell.length != 0) {
+        nearbyBoids = nearbyBoids.concat(leftCell);
+    }
+
+    // top-left cell
+    newY = (boidCellY + 1 < rows) ? boidCellY + 1 : 0;
+    let topLeftCell = boidCells[newX][newY];
+
+    if (topLeftCell.length != 0) {
+        nearbyBoids = nearbyBoids.concat(topLeftCell);
+    }
+
+    return nearbyBoids;
+}
+
 // ------------------------------------------------
 class Boid {
     constructor() {
@@ -129,7 +232,8 @@ class Boid {
         this.velocity = p5.Vector.random2D();
         this.velocity.setMag(random(2, 4))
         this.acceleration = createVector();
-        this.column
+        this.column;
+        this.row;
 
         // TODO: Make separate force values for cohesion, alignment and ...
         // maxForce determines how much each boid will be attracted to each other 
@@ -143,13 +247,13 @@ class Boid {
 
     // Handle when boids hit edges
     checkEdgeBoundaries() {
-        if (this.position.x > winWidth) {
+        if (this.position.x >= winWidth) {
             this.position.x = 0;
         } else if (this.position.x < 0) {
             this.position.x = winWidth;
         }
 
-        if (this.position.y > winHeight) {
+        if (this.position.y >= winHeight) {
             this.position.y = 0;
         } else if (this.position.y < 0) {
             this.position.y = winHeight;
