@@ -226,6 +226,7 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
   animation: TopNavIdle 2s ease-in-out infinite;
 }
 
@@ -273,7 +274,6 @@ header {
 }
 
 .bottom-nav-btn {
-  cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -303,6 +303,7 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
   animation: BtmNavIdle 2s ease-in-out infinite;
 }
 
@@ -329,16 +330,69 @@ header {
 /* Skills section styling */
 
 .skills-section {
+  display: flex;
+  flex-direction: column;
   position: relative;
-  min-height: 100vh;
-  height: 100%;
+  /* min-height: 100vh; */
+  height: 100vh;
   background: darkslategray;
+  padding: 2rem;
 }
 
 .section-title {
-  position: relative;
-  height: 10%;
   background: red;
+
+  display: flex;
+  height: 15%;
+
+  font-size: 4rem;
+
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0;
+}
+
+.skills-container {
+  background: green;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  height: 100%;
+  padding: 3rem;
+}
+
+.skill-category {
+  background: yellowgreen;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.category-title {
+  font-size: 1.5rem;
+  padding: 4rem 4rem 4rem 10rem;
+  min-width: 30rem;
+  width: 40rem;
+}
+
+.skills-list {
+  background: goldenrod;
+
+  margin: 2rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.skills-list p {
+  background: lightblue;
+  margin: 1rem;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
 }
 
 /* Projects section styling */
