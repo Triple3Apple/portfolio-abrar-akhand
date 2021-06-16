@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-401.259,-1209.36)">
+        <g id="Skills-Icon" serif:id="Skills Icon" transform="matrix(0.299319,0,0,0.321088,328.663,820.22)">
+            <rect x="242.538" y="1211.94" width="167.046" height="155.721" style="fill:none;"/>
+            <g id="Tools" transform="matrix(4.7254,0,0,4.40504,116.575,290.252)">
+                <g>
+                    <g transform="matrix(0.472671,0,0,0.472671,24.4933,131.333)">
+                        <path d="M35.439,187.203C35.439,187.203 42.823,169.77 22.581,172.235L27.333,181.212L22.757,184.556L14.132,177.515C14.132,177.515 4.723,196.093 27.254,195.388L49.169,217.303C49.169,217.303 42.04,234.642 62.283,232.177L57.53,223.2L62.107,219.856L70.732,226.897C70.732,226.897 80.765,209.294 58.234,209.998L35.439,187.203" style="fill:none;stroke:white;stroke-width:2.99px;"/>
+                    </g>
+                    <g transform="matrix(0.472671,0,0,0.472671,24.4933,131.333)">
+                        <path d="M42.436,193.483L58.162,177.757L64.336,183.93L49.195,199.071" style="fill:none;stroke:white;stroke-width:2.99px;"/>
+                    </g>
+                    <g transform="matrix(0.472671,0,0,0.472671,24.4933,131.333)">
+                        <path d="M58.162,177.757L62.371,173.584L68.518,179.731L64.336,183.93" style="fill:none;stroke:white;stroke-width:2.99px;"/>
+                    </g>
+                    <g transform="matrix(0.472671,0,0,0.472671,24.4933,131.333)">
+                        <path d="M33.915,202.005L11.993,223.565L10.984,229.547L17.658,229.403L39.276,207.784" style="fill:none;stroke:white;stroke-width:2.99px;"/>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

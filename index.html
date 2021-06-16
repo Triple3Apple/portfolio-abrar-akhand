@@ -19,49 +19,100 @@
   <body>
     <div class="webpage-root-element">
       <div class="social-side-bar">
-        <div class="social-buttons">
-          <!-- <div class="empty-social-container"></div> -->
+        <!-- Page Nav Buttons (Sidebar) -->
+        <div class="sidebar-nav-buttons">
           <div
-            class="social-button-container"
+            class="sidebar-button-container sidebar-nav-button"
+            id="side-nav-button1"
+          >
+            <a href="#home"></a>
+            <img
+              src="./img/vector img/home icon.svg"
+              class="side-bar-button"
+              id="home-icon"
+              alt="Home Button"
+            />
+          </div>
+          <div
+            class="sidebar-button-container sidebar-nav-button"
+            id="side-nav-button2"
+          >
+            <a href="#skills"></a>
+            <img
+              src="./img/vector img/skills icon.svg"
+              class="side-bar-button"
+              id="skills-icon"
+              alt="Skills Button"
+            />
+          </div>
+          <div
+            class="sidebar-button-container sidebar-nav-button"
+            id="side-nav-button3"
+          >
+            <a href="#projects"></a>
+            <img
+              src="./img/vector img/projects icon.svg"
+              class="side-bar-button"
+              id="projects-icon"
+              alt="Projects Button"
+            />
+          </div>
+          <div
+            class="sidebar-button-container sidebar-nav-button"
+            id="side-nav-button4"
+            onclick="window.open('./docs/Abrar-Akhand.pdf')"
+          >
+            <img
+              src="./img/vector img/resume icon.svg"
+              class="side-bar-button"
+              id="resume-icon"
+              alt="Resume Button"
+            />
+          </div>
+        </div>
+        <!-- Social Buttons (Sidebar) -->
+        <div class="social-buttons">
+          <div
+            class="sidebar-button-container"
             id="social-button1"
             onClick="window.open('https://www.linkedin.com/in/abrar-a-akhand/')"
           >
             <img
               src="./img/linkedin logo edited button.png"
-              class="social-image-button"
+              class="side-bar-button"
               id="linkedin-icon"
               alt="LinkedIn Icon"
               onClick="window.open('https://www.linkedin.com/in/abrar-a-akhand/')"
             />
           </div>
           <div
-            class="social-button-container"
+            class="sidebar-button-container"
             id="social-button2"
             onClick="window.open('https://twitter.com/Triple3Apple')"
           >
             <img
               src="./img/2021 Twitter logo - blue.png"
-              class="social-image-button"
+              class="side-bar-button"
               id="twitter-icon"
               alt="Twitter Icon"
               onClick="window.open('https://twitter.com/Triple3Apple')"
             />
           </div>
           <div
-            class="social-button-container"
+            class="sidebar-button-container"
             id="social-button3"
             onClick="window.open('https://github.com/Triple3Apple')"
           >
             <img
               src="./img/GitHub-Mark-Light-64px.png"
-              class="social-image-button"
+              class="side-bar-button"
               id="github-icon"
               alt="GitHub Icon"
               onClick="window.open('https://github.com/Triple3Apple')"
             />
           </div>
           <div
-            class="social-button-container"
+            class="sidebar-button-container"
             id="social-button4"
             onClick="window.location.href='wip.html'"
           >
@@ -249,6 +300,7 @@
         </section>
 
         <section class="projects-section" id="projects">
+          <div class="bg-graph-paper"></div>
           <!-- <div class="projects-container"></div> -->
         </section>
       </div>

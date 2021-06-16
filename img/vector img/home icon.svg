@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 70 70" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-242,-1211)">
+        <g id="Home-Icon" serif:id="Home Icon" transform="matrix(0.419047,0,0,0.449523,140.365,666.206)">
+            <rect x="242.538" y="1211.94" width="167.046" height="155.721" style="fill:none;"/>
+            <clipPath id="_clip1">
+                <rect x="242.538" y="1211.94" width="167.046" height="155.721"/>
+            </clipPath>
+            <g clip-path="url(#_clip1)">
+                <g id="Home" transform="matrix(4.93302,0,0,4.59858,101.15,507.357)">
+                    <g transform="matrix(0.805036,0,0,0.805036,14.779,-177.714)">
+                        <path d="M38.205,413.863L59.348,431.007L51.097,431.007L51.097,450.354L25.456,450.354L25.456,431.007L17.205,431.007L38.348,413.863L38.205,413.863Z" style="fill:none;stroke:white;stroke-width:1.2px;"/>
+                    </g>
+                    <g transform="matrix(0.958212,0,0,0.958212,4.97283,31.5792)">
+                        <path d="M44.92,159.941L39.864,159.941L39.864,150L44.92,150L44.92,159.941Z" style="fill:none;stroke:white;stroke-width:1.01px;"/>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

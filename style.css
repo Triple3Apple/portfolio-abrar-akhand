@@ -35,6 +35,7 @@ body {
   position: relative;
 }
 
+/* Sidebar styling */
 .social-side-bar {
   background: #121212;
 
@@ -49,6 +50,17 @@ body {
   z-index: 1; /* Makes side bar stay on top of page elements. */
 }
 
+/* sidebar nav buttons styling */
+
+.sidebar-nav-buttons {
+  width: 80px;
+  left: 0;
+  top: 5rem;
+  position: fixed;
+}
+
+/* sidebar social buttons styling */
+
 .social-buttons {
   width: 80px;
   left: 0;
@@ -56,7 +68,7 @@ body {
   position: fixed;
 }
 
-.social-button-container {
+.sidebar-button-container {
   background: none;
 
   position: relative;
@@ -73,7 +85,7 @@ body {
   transition: background 0.25s ease-in-out;
 }
 
-.social-button-container:hover {
+.sidebar-button-container:hover {
   background: rgb(44, 44, 44);
 }
 
@@ -97,15 +109,10 @@ body {
   top: -3px;
 }
 
-/* img.social-image-button {
+/* img.side-bar-button {
   cursor: pointer;
   padding-top: 1rem;
 } */
-
-.empty-social-container {
-  position: relative;
-  bottom: 100vh;
-}
 
 .page-content {
   position: relative;
@@ -118,10 +125,6 @@ body {
 
   /* background: brown; */
 }
-/* 
-header {
-  position: relative;
-} */
 
 /* Hero section styling */
 
@@ -401,6 +404,27 @@ header {
   position: relative;
   min-height: 100vh;
   background: darkkhaki;
+}
+
+/* Test */
+.bg-graph-paper {
+  width: 500px;
+  height: 500px;
+  background-color: #fff;
+  background-image: linear-gradient(rgba(244, 244, 250, 0.8) 1px, transparent 0),
+    linear-gradient(#f4f4fa 1px, transparent 0),
+    linear-gradient(90deg, rgba(244, 244, 250, 0.8) 1px, transparent 0),
+    linear-gradient(90deg, #f4f4fa 1px, transparent 0),
+    linear-gradient(transparent 3px, #fff 0, #fff 94px, transparent 0),
+    linear-gradient(
+      90deg,
+      #f4f4fa 3px,
+      transparent 0,
+      transparent 94px,
+      #f4f4fa 0
+    );
+  background-size: 24px 24px, 96px 96px, 24px 24px, 96px 96px, 96px 96px,
+    96px 96px;
 }
 
 /* Animations */

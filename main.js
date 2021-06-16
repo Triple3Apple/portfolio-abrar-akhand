@@ -75,6 +75,29 @@ $(document).ready(function () {
 
     });
 
+    // For sidebar nav buttons
+    $(".sidebar-nav-button").click(function () {
+        console.log('btn pushed');
+        locationToScroll = $(this).find("a").attr("href");
+
+        console.log(locationToScroll);
+
+        // Check if value is undefined or null
+        if (locationToScroll == null) {
+            console.log('Opened resume');
+            return false;
+        }
+
+        // Using jQuery's animate() method to add smooth page scroll since smooth scroll is not supported in safari
+
+        $('html, body').animate({
+            scrollTop: $(locationToScroll).offset().top
+        }, 800);
+
+        return false;
+
+    });
+
     var onNewSection = false;
 
     // Determines the current location of the user utilizing the the page scroll position.  
