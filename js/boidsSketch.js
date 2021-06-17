@@ -22,7 +22,7 @@ function setup() {
 
 
     // TODO: Remove below line
-    flockSize = 20;
+    //flockSize = 20;
 
 
     for (let i = 0; i < flockSize; i++) {
@@ -62,7 +62,7 @@ var outputted = false;
 
 function draw() {
     frameRate(60);
-    background('#2C2C2C');
+    background('#949494');
 
     // creating a 2d array for holding boid objects at the corresponding column and row index
     let boidCells = new Array(10);
@@ -78,13 +78,16 @@ function draw() {
         // ceil --> round up number
 
         // TODO: might need to change to floor?
+        /*
         let columnCellSize = Math.ceil(winWidth / columnsNum);
         let rowCellSize = Math.ceil(winHeight / rowsNum);
 
 
         let columnIndex;
         let rowIndex;
+        */
 
+        /*
         for (let boid of flock) {
             console.log('in for loop');
             // Organize each boid into a quadrant (row & column index)
@@ -107,31 +110,43 @@ function draw() {
             boid.column = columnIndex;
             boid.row = rowIndex;
         }
+        */
 
-        for (let boid of flock) {
-            boid.checkEdgeBoundaries();
+        // for (let boid of flock) {
+        //     boid.checkEdgeBoundaries();
 
+        //     // find and store nearby boids
+        //     // let nearbyBoidsArray = getNearbyBoids(boid.column, boid.row, boidCells, boid, rowsNum, columnsNum);
 
-
-            //const boidCellX = boid.column;
-            //const boidCellY = boid.row;
-
-
-            // find and store nearby boids
-            let nearbyBoidsArray = getNearbyBoids(boid.column, boid.row, boidCells, boid, rowsNum, columnsNum);
-
-            console.log(nearbyBoidsArray);
+        //     // console.log(nearbyBoidsArray);
 
 
-            // Below line needs to be optimized
-            boid.applyBoidProperties(flock);
+        //     // Below line needs to be optimized
+        //     boid.applyBoidProperties(flock);
 
-            boid.update();
-            boid.show();
-        }
+        //     boid.update();
+        //     boid.show();
+        // }
 
         console.log(boidCells);
         outputted = true;
+    }
+
+    for (let boid of flock) {
+        boid.checkEdgeBoundaries();
+
+        // find and store nearby boids
+        // let nearbyBoidsArray = getNearbyBoids(boid.column, boid.row, boidCells, boid, rowsNum, columnsNum);
+
+        // console.log(nearbyBoidsArray);
+
+
+        // Below line needs to be optimized
+        boid.applyBoidProperties(flock);
+
+        boid.update();
+        //boid.show();
+        boid.render();
     }
 
 }
@@ -410,6 +425,35 @@ class Boid {
         stroke(255);
         point(this.position.x, this.position.y)
 
+    }
+
+    render() {
+        // Draw a triangle rotated in the direction of velocity
+        let theta = this.velocity.heading() + radians(90);
+
+        // Shape Color
+        fill('#03DAC6');
+        stroke('#000000');
+        push();
+        translate(this.position.x, this.position.y);
+        rotate(theta);
+        beginShape();
+
+        // vertex(2, this.r * -2);
+        // vertex(-this.r, this.r * 2);
+        // vertex(2, this.r * 2);
+        // vertex(this.r, this.r * 2);
+
+        vertex(-10 / 5, 10 / 5);
+        vertex(0, 35 / 5);
+        vertex(10 / 5, 10 / 5);
+        vertex(35 / 5, 0);
+        vertex(10 / 5, -8 / 5);
+        vertex(0, -35 / 5);
+        vertex(-10 / 5, -8 / 5);
+        vertex(-35 / 5, 0);
+        endShape(CLOSE);
+        pop();
     }
 
 
