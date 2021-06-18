@@ -166,7 +166,7 @@ body {
     background-color: #eaeaea;
     background-size: 20px 20px; */
 
-  background-color: #eaeaea;
+  /* background-color: #eaeaea;
 
   background-image: -webkit-repeating-linear-gradient(
       90deg,
@@ -223,7 +223,7 @@ body {
       rgba(255, 105, 180, 0.2) 1px,
       transparent 1px,
       transparent 15px
-    );
+    ); */
 
   /* background: #454545; */
   min-width: 300px;
@@ -258,6 +258,12 @@ body {
   line-height: calc(3rem + 1vw);
 
   padding: 3rem;
+}
+
+.name-text {
+  text-shadow: none;
+  font-family: "Permanent Marker", cursive;
+  color: #f44546;
 }
 
 /* Hero Boids Background Styling */
@@ -407,61 +413,113 @@ body {
   position: relative;
   /* min-height: 100vh; */
   height: 100vh;
+
   background: darkslategray;
   padding: 2rem;
 }
 
-.section-title {
-  background: red;
-
+.skills-section-title {
   display: flex;
-  height: 15%;
+  height: 10%;
 
+  margin: 10rem 0rem 5rem 0rem;
+
+  height: 10%;
+  width: 25rem;
   font-size: 4rem;
+
+  transform: rotate(-1.25deg);
 
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin: 0;
+  align-self: center;
+
+  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.22);
 }
 
 .skills-container {
   background: green;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-around;
 
   height: 100%;
+  width: 80%;
+  align-self: center;
   padding: 3rem;
 }
 
 .skill-category {
-  background: yellowgreen;
+  background: rgb(102, 131, 40);
+  margin: 3rem;
+  width: 70%;
 
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
 }
 
 .category-title {
   font-size: 1.5rem;
-  padding: 4rem 4rem 4rem 10rem;
-  min-width: 30rem;
-  width: 40rem;
+  padding: 1rem;
+  margin: 1rem;
+
+  text-align: center !important;
 }
 
+.category-title h3 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  text-align: left;
+  align-self: center;
+  padding: 2rem 5rem;
+}
+
+.skill-category:nth-child(1) {
+  transform: rotate(-0.9deg);
+}
+
+.skill-category:nth-child(2) {
+  transform: rotate(0.8deg);
+}
+
+.skill-category:nth-child(3) {
+  transform: rotate(-0.7deg);
+}
+
+/* #cat-title1 {
+}
+
+#cat-title2 {
+  transform: rotate(-0.5deg);
+}
+
+#cat-title3 {
+  transform: rotate(1.3deg);
+} */
+
 .skills-list {
-  background: goldenrod;
+  background: none;
 
   margin: 2rem;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
 }
 
 .skills-list p {
-  background: lightblue;
+  background: none;
+
+  font-family: "Permanent Marker", cursive;
+  font-size: 1.75rem;
+
   margin: 1rem;
   padding: 1rem 2rem;
   border-radius: 2rem;
@@ -475,25 +533,69 @@ body {
   background: darkkhaki;
 }
 
-/* Test */
-.bg-graph-paper {
-  width: 500px;
-  height: 500px;
-  background-color: #fff;
-  background-image: linear-gradient(rgba(244, 244, 250, 0.8) 1px, transparent 0),
-    linear-gradient(#f4f4fa 1px, transparent 0),
-    linear-gradient(90deg, rgba(244, 244, 250, 0.8) 1px, transparent 0),
-    linear-gradient(90deg, #f4f4fa 1px, transparent 0),
-    linear-gradient(transparent 3px, #fff 0, #fff 94px, transparent 0),
-    linear-gradient(
+/* Graph Paper effect */
+
+.skills-section-title,
+.hero-container,
+.skill-category {
+  background-color: #eaeaea;
+
+  background-image: -webkit-repeating-linear-gradient(
       90deg,
-      #f4f4fa 3px,
-      transparent 0,
-      transparent 94px,
-      #f4f4fa 0
+      rgba(0, 191, 255, 0.2),
+      rgba(0, 191, 255, 0.2) 1px,
+      solid 1px,
+      solid 15px
+    ),
+    -webkit-repeating-linear-gradient(0deg, rgba(255, 105, 180, 0.2), rgba(
+            255,
+            105,
+            180,
+            0.2
+          )
+          1px, solid 1px, solid 15px);
+  background-image: -moz-repeating-linear-gradient(
+      90deg,
+      rgba(0, 191, 255, 0.2),
+      rgba(0, 191, 255, 0.2) 1px,
+      solid 1px,
+      solid 15px
+    ),
+    -moz-repeating-linear-gradient(0deg, rgba(255, 105, 180, 0.2), rgba(
+            255,
+            105,
+            180,
+            0.2
+          )
+          1px, solid 1px, solid 15px);
+  background-image: -o-repeating-linear-gradient(
+      90deg,
+      rgba(0, 191, 255, 0.2),
+      rgba(0, 191, 255, 0.2) 1px,
+      solid 1px,
+      solid 15px
+    ),
+    -o-repeating-linear-gradient(0deg, rgba(255, 105, 180, 0.2), rgba(
+            255,
+            105,
+            180,
+            0.2
+          )
+          1px, solid 1px, solid 15px);
+  background-image: repeating-linear-gradient(
+      90deg,
+      rgba(0, 191, 255, 0.2),
+      rgba(0, 191, 255, 0.2) 1px,
+      transparent 1px,
+      transparent 15px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 105, 180, 0.2),
+      rgba(255, 105, 180, 0.2) 1px,
+      transparent 1px,
+      transparent 15px
     );
-  background-size: 24px 24px, 96px 96px, 24px 24px, 96px 96px, 96px 96px,
-    96px 96px;
 }
 
 /* Animations */
