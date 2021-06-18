@@ -21,7 +21,7 @@ $(document).ready(function () {
     });
 
     tippy('#side-nav-button4', {
-        content: 'Resume',
+        content: 'View Resume',
         placement: 'right',
         animation: 'shift-toward',
     });
