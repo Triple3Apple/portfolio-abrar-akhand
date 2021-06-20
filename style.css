@@ -595,7 +595,7 @@ body {
   }
 
   .hero-text {
-    width: 300px;
+    width: 250px;
     font-size: calc(1rem + 0.75vw);
 
     margin: 0;
