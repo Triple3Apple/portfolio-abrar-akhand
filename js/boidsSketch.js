@@ -9,16 +9,21 @@ let winWidth, winHeight;
 
 function setup() {
     flock = [];
-    winWidth = window.innerWidth - 80;
-    winHeight = window.innerHeight;
+    winWidth = window.innerWidth;
+    winHeight = window.innerHeight + 10;
 
-    flockSize = Math.round(map(winWidth, 100, 1440, 10, 60, true));
+    flockSize = Math.round(map(winWidth, 300, 1440, 5, 60, true));
 
     var cnv = createCanvas(winWidth, winHeight);
+
     cnv.style('display', 'block');
+    cnv.style('top', '-10px');
+    cnv.style('position', 'absolute');
+    cnv.style('z-index', '-3');
     cnv.parent('boids-sketch');
 
     // new
+    console.log(`Flock Size: ${flockSize}`);
 
 
     // TODO: Remove below line
@@ -245,17 +250,19 @@ class Boid {
         // boid will spawn in the middle of the canvas
         this.position = createVector(random(winWidth), random(winHeight));
         this.velocity = p5.Vector.random2D();
-        this.velocity.setMag(random(2, 4))
+        this.velocity.setMag(random(2, 5))
         this.acceleration = createVector();
         this.column;
         this.row;
+        this.size = map(winWidth, 300, 1440, 0.2, 0.5, true);
+        this.strokeSize = map(winWidth, 300, 1440, 1, 2, true);
 
         // TODO: Make separate force values for cohesion, alignment and ...
         // maxForce determines how much each boid will be attracted to each other 
         // Higher values increase attraction
-        this.maxForce = 0.2;
+        this.maxForce = 0.225;
 
-        this.maxSpeed = 3;
+        this.maxSpeed = map(winWidth, 300, 1440, 3, 6, true);
 
         // Cool things, maxForce set to 1 and speed to 5 and just apply seperation.
     }
@@ -325,7 +332,7 @@ class Boid {
             steeringForce.div(total);
             steeringForce.setMag(this.maxSpeed);
             steeringForce.sub(this.velocity);
-            steeringForce.limit(this.maxForce);
+            steeringForce.limit(this.maxForce * 1.25);
         }
 
         return steeringForce;
@@ -333,7 +340,7 @@ class Boid {
     }
 
     applyCohesion(boids) {
-        let perceptionRadius = 50;
+        let perceptionRadius = 60;
 
         let steeringForce = createVector();
 
@@ -369,7 +376,7 @@ class Boid {
     // Steer to avoid crowding local flock-mates - Craig Reynolds
     applySeparation(boids) {
 
-        let perceptionRadius = 50;
+        let perceptionRadius = 30;
 
         let steeringForce = createVector();
 
@@ -407,7 +414,7 @@ class Boid {
 
             steeringForce.setMag(this.maxSpeed);
             steeringForce.sub(this.velocity);
-            steeringForce.limit(0.25);
+            steeringForce.limit(0.5);
         }
 
         return steeringForce;
@@ -420,12 +427,12 @@ class Boid {
         this.velocity.limit(this.maxSpeed)
     }
 
-    show() {
-        strokeWeight(8);
-        stroke(255);
-        point(this.position.x, this.position.y)
+    // show() {
+    //     strokeWeight(8);
+    //     stroke(255);
+    //     point(this.position.x, this.position.y)
 
-    }
+    // }
 
     render() {
         // Draw a triangle rotated in the direction of velocity
@@ -434,6 +441,7 @@ class Boid {
         // Shape Color
         fill('#03DAC6');
         stroke('#000000');
+        strokeWeight(this.strokeSize);
         push();
         translate(this.position.x, this.position.y);
         rotate(theta);
@@ -444,14 +452,14 @@ class Boid {
         // vertex(2, this.r * 2);
         // vertex(this.r, this.r * 2);
 
-        vertex(-10 / 5, 10 / 5);
-        vertex(0, 35 / 5);
-        vertex(10 / 5, 10 / 5);
-        vertex(35 / 5, 0);
-        vertex(10 / 5, -8 / 5);
-        vertex(0, -35 / 5);
-        vertex(-10 / 5, -8 / 5);
-        vertex(-35 / 5, 0);
+        vertex(-10 * this.size, 10 * this.size);
+        vertex(0, 35 * this.size);
+        vertex(10 * this.size, 10 * this.size);
+        vertex(35 * this.size, 0);
+        vertex(10 * this.size, -8 * this.size);
+        vertex(0, -35 * this.size);
+        vertex(-10 * this.size, -8 * this.size);
+        vertex(-35 * this.size, 0);
         endShape(CLOSE);
         pop();
     }

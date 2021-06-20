@@ -22,17 +22,31 @@
 
 html {
   font-size: 62.5%;
-  overflow-x: hidden;
+
   /* *** Makes it so 1rem = 10px *** */
+
+  overflow-x: hidden;
 }
 
 body {
   font-family: "Roboto Mono", monospace;
-  display: flex;
+  /* display: flex; */
 }
 
-.webpage-root-element {
+/* .webpage-root-element {
   position: relative;
+} */
+
+/* Tooltip Styling */
+
+.tooltip-text {
+  font-size: 2.5rem;
+  padding: 1rem;
+  left: 10px;
+}
+
+.tippy-tooltip {
+  color: red !important;
 }
 
 /* Sidebar styling */
@@ -41,20 +55,20 @@ body {
 
   position: fixed;
 
-  height: 100%;
-  width: 80px;
+  min-height: 100vh;
+  width: 150px;
 
   top: 0;
   left: 0;
 
-  z-index: 1; /* Makes side bar stay on top of page elements. */
+  z-index: 1;
 }
 
 /* sidebar nav buttons styling */
 
 .sidebar-nav-buttons {
-  width: 80px;
-  left: 0;
+  width: 130px;
+  left: 15px;
   top: 5rem;
   position: fixed;
 }
@@ -76,9 +90,8 @@ body {
 
   width: 60%;
   height: 60%;
-  position: relative;
   padding: 1.25rem;
-  margin: 1.75rem 0.75rem;
+  margin: 5rem 0.75rem;
   border-radius: 5px;
   cursor: pointer;
 
@@ -114,25 +127,24 @@ body {
   padding-top: 1rem;
 } */
 
-.page-content {
+/* .page-content {
   position: relative;
-  /* border: 5px solid red; */
+  
 
-  /* Margin moved to the left for the sidebar */
-  left: 80px;
-  width: calc(100vw - 80px);
-  height: 100%;
+  
+  left: 40px;
+  
+  width: calc(100%);
 
-  /* background: brown; */
-}
+  
+} */
 
 /* Hero section styling */
 
 .hero {
-  visibility: visible;
+  background: none;
 
   min-height: 100vh;
-
   width: 100vw;
 
   background-repeat: no-repeat;
@@ -147,45 +159,28 @@ body {
 }
 
 .hero-container {
-  /* background: #353535;
-  max-width: 500px;
-  width: 100%;
-  display: table-cell;
-  vertical-align: middle;
-  /* display: flex;
-  flex-direction: column; */
-  /* height: 40%; */
-  /* align-items: center;
-  justify-content: center; */
-  /* margin: 0 auto;
-  text-align: center;
-  vertical-align: baseline; */
-
-  /* Graph Paper Effect */
-
-  /* height: 200px;
-    margin: 0 0 20px 0;
-    background-color: #eaeaea;
-    background-size: 20px 20px; */
-
-  /* background: #454545; */
+  display: flex;
+  flex-direction: row;
   min-width: 300px;
-  width: 40%;
+  max-width: 100rem;
+  align-items: center;
 
   box-shadow: 0 7px 14px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.22);
 
   transform: rotate(1.2deg);
 }
 
-.hero-title {
-  font-family: "weeblysleek";
+.hero-image {
+  /* font-family: "weeblysleek";
   color: rgb(61, 61, 61);
   font-size: calc(2.4rem + 1.5vw);
-  font-weight: 800;
+  font-weight: 800; */
+
+  display: flex;
 
   margin: 0;
-  padding: 1rem;
-  text-align: center;
+  padding: 3.5rem;
+  width: 300px;
   display: block;
 }
 
@@ -579,5 +574,34 @@ body {
   }
   50% {
     transform: translateY(-4px);
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .social-side-bar,
+  .social-side-bar * {
+    display: none;
+  }
+
+  .hero-container {
+    width: 100px;
+    flex-direction: column;
+    min-width: 250px;
+  }
+
+  .hero-image {
+    width: 125px;
+    padding: 2.5rem 0 2rem 0;
+  }
+
+  .hero-text {
+    width: 300px;
+    font-size: calc(1rem + 0.75vw);
+
+    margin: 0;
+    font-weight: 300;
+    line-height: calc(2rem + 1vw);
+
+    padding: 0rem 2.5rem 2rem 2rem;
   }
 }
