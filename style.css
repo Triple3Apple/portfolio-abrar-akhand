@@ -40,7 +40,7 @@ body {
 /* Tooltip Styling */
 
 .tooltip-text {
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   padding: 1rem;
   left: 10px;
 }
@@ -56,30 +56,33 @@ body {
   position: fixed;
 
   min-height: 100vh;
-  width: 150px;
+  width: 80px;
 
   top: 0;
   left: 0;
 
-  z-index: 1;
+  z-index: 100;
+}
+
+/* sidebar nav buttons styling  &  sidebar social buttons styling */
+
+.sidebar-nav-buttons,
+.social-buttons {
+  width: 80px;
+  left: 0px;
+  position: fixed;
 }
 
 /* sidebar nav buttons styling */
 
 .sidebar-nav-buttons {
-  width: 130px;
-  left: 15px;
   top: 5rem;
-  position: fixed;
 }
 
 /* sidebar social buttons styling */
 
 .social-buttons {
-  width: 80px;
-  left: 0;
   bottom: 5rem;
-  position: fixed;
 }
 
 .sidebar-button-container {
@@ -91,7 +94,7 @@ body {
   width: 60%;
   height: 60%;
   padding: 1.25rem;
-  margin: 5rem 0.75rem;
+  margin: 2.5rem 0.75rem;
   border-radius: 5px;
   cursor: pointer;
 
@@ -156,6 +159,25 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
+
+  background: linear-gradient(to top, rgba(149, 149, 149), transparent 15%);
+  /*
+  background-image: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 1em,
+      #3f3f3f25 50%
+    ),
+    repeating-linear-gradient(45deg, #ffffff, #ffffff 1em, transparent 1em),
+    repeating-linear-gradient(
+      45deg,
+      #afafaf,
+      #e9e9e9 1em,
+      #ff575715 1em,
+      #ff575715 50%
+    );
+  background-size: 3em 3em, 2em 2em;
+  */
 }
 
 .hero-container {
@@ -221,7 +243,7 @@ body {
   flex-direction: row;
   top: 1px;
   justify-content: center;
-  z-index: 1;
+  z-index: 10;
   height: 100px;
 }
 
@@ -231,7 +253,6 @@ body {
   flex-direction: column;
   justify-content: center;
   margin: 1rem 10vw;
-  z-index: 2;
   background: none;
 
   opacity: 1;
@@ -285,7 +306,7 @@ body {
   bottom: 1px; /* Was 80vh */
   justify-content: center;
   align-items: center;
-  z-index: 1;
+  z-index: 10;
   height: 100px;
 }
 
@@ -349,22 +370,43 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
-  /* min-height: 100vh; */
+  min-height: 100vh;
   /* TODO: Since height was removed, change scroll position code in main.js */
 
-  background: darkslategray;
-  padding: 2rem;
+  /* background: darkslategray; */
+  background-image: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 1em,
+      #3f3f3f25 50%
+    ),
+    repeating-linear-gradient(45deg, #ffffff, #ffffff 1em, transparent 1em),
+    repeating-linear-gradient(
+      45deg,
+      #afafaf,
+      #e9e9e9 1em,
+      #ff575715 1em,
+      #ff575715 50%
+    );
+  background-size: 3em 3em, 2em 2em;
+}
+
+.page-transition-color {
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(to bottom, rgba(149, 149, 149), transparent 7%);
+  position: absolute;
+  z-index: 1;
 }
 
 .skills-section-title {
   display: flex;
-  height: 10%;
 
-  margin: 10rem 0rem 5rem 0rem;
+  margin: 5rem 0rem 5rem 0rem;
 
-  height: 10%;
-  width: 25rem;
-  font-size: 4rem;
+  height: 8rem;
+  width: 20rem;
+  font-size: 3.25rem;
 
   transform: rotate(-1.25deg);
 
@@ -374,33 +416,35 @@ body {
   align-self: center;
 
   box-shadow: 0 7px 14px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.22);
+
+  z-index: 5;
 }
 
 .skills-container {
-  background: green;
-
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   flex-basis: 1rem;
-  justify-content: space-around;
+  justify-content: space-between;
 
   height: 100%;
-  width: 80%;
+  width: 85%;
   align-self: center;
-  padding: 3rem;
+  padding: 0rem;
 }
 
 .skill-category {
-  background: rgb(102, 131, 40);
   margin: 3rem;
 
-  height: fit-content;
+  height: 55rem;
   width: 40rem;
+  border-radius: 1.5rem;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.2);
 }
 
 .category-title {
@@ -411,23 +455,25 @@ body {
 }
 
 .category-title h3 {
-  text-transform: uppercase;
-  text-decoration: underline;
-  font-family: "Permanent Marker", cursive;
+  font-family: "weeblysleek";
+  color: black;
   font-size: 2.5rem;
-  font-weight: 100;
+
+  /* font-family: "Permanent Marker", cursive; */
+  /* font-size: 2.5rem;
+  font-weight: 100; */
 
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   width: fit-content;
-  text-align: left;
+  text-align: center;
   align-self: center;
   padding: 3rem 0 0 0;
 }
 
-.skill-category:nth-child(1) {
+/* .skill-category:nth-child(1) {
   transform: rotate(-0.9deg) translate(10px, 8px);
 }
 
@@ -437,17 +483,23 @@ body {
 
 .skill-category:nth-child(3) {
   transform: rotate(-0.7deg) translate(-18px, 20px);
-}
+} */
 
 .skills-list {
   background: none;
+  position: relative;
+  left: 3rem;
 
   margin: 2rem;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: flex-start;
   justify-content: center;
+
+  width: inherit;
+
+  list-style: none;
 }
 
 .skills-list p {
@@ -455,27 +507,12 @@ body {
 
   color: #000000;
 
-  font-family: "Permanent Marker", cursive;
-  font-size: 1.75rem;
+  font-family: inherit;
+  font-size: 1.8rem;
 
   margin: 0.5rem 1.5rem;
-}
-
-.skills-list p:nth-child(2),
-.skills-list p:nth-child(4),
-.skills-list p:nth-child(7) {
-  background-color: #f3ec78;
-  background-image: linear-gradient(
-    45deg,
-    #000000 0%,
-    #3b3b3b 50%,
-    #000000 80%
-  );
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
+  background: rgba(231, 251, 45, 0.404);
+  padding: 0, 1rem;
 }
 
 .list-bullet {
