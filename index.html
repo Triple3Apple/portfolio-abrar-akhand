@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./css/style.css" />
 
     <!-- Tippy.js Stylesheet -->
     <link
@@ -33,17 +33,47 @@
       href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/regular.min.css"
+      integrity="sha512-d2x1oQUT6HACW9UlXxWI6XrIBDrEE5z2tit/+kWEdXdVYuift7sm+Q6ucfGWQr1F0+GD9/6eYoYDegw2nm05Vw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="./js/boidsSketch.js"></script>
+    <!-- <script src="./js/boidsSketch.js"></script> -->
     <script src="./js/main.js"></script>
     <title>Abrar Akhand - Portfolio</title>
   </head>
   <body>
     <div class="webpage-root-element">
+      <!-- Normal Nav testing -->
+      <nav>
+        <div class="nav-button" id="logo">
+          <h4><a href="#home"></a>ABRAR AKHAND</h4>
+        </div>
+        <ul class="nav-buttons">
+          <li class="nav-button">
+            <a href="#skills"></a>
+            SKILLS
+          </li>
+          <li class="nav-button">
+            <a href="#projects"></a>
+            PROJECTS
+          </li>
+          <li
+            class="nav-button resume-button"
+            onclick="window.open('./docs/Abrar Akhand-Resume.pdf')"
+          >
+            RESUME
+          </li>
+          <li class="nav-button">CONTACT</li>
+        </ul>
+      </nav>
       <div class="social-side-bar">
         <!-- Page Nav Buttons (Sidebar) -->
-        <div class="sidebar-nav-buttons">
+        <!-- <div class="sidebar-nav-buttons">
           <div
             class="sidebar-button-container sidebar-nav-button"
             id="side-nav-button1"
@@ -55,15 +85,15 @@
               id="home-icon"
               alt="Home Button"
             />
-          </div>
-          <!-- <script>
+          </div> -->
+        <!-- <script>
             tippy("#side-nav-button1", {
               content: "Home",
               placement: "right",
               animation: "shift-toward",
             });
           </script> -->
-          <div
+        <!-- <div
             class="sidebar-button-container sidebar-nav-button"
             id="side-nav-button2"
           >
@@ -99,9 +129,9 @@
               alt="Resume Button"
             />
           </div>
-        </div>
+        </div> -->
         <!-- Social Buttons (Sidebar) -->
-        <div class="social-buttons">
+        <!-- <div class="social-buttons">
           <div
             class="sidebar-button-container"
             id="social-button1"
@@ -154,12 +184,66 @@
               ✨
             </p>
           </div>
-        </div>
+        </div> -->
       </div>
+
+      <!-- END -->>
       <div class="page-content">
-        <header></header>
         <!-- Testing Boids -->
-        <div id="boids-sketch"></div>
+        <!-- <div id="boids-sketch"></div> -->
+
+        <!-- <div class="gooey-circles-container">
+          <div class="gooey-circle circle1"></div>
+          <div class="gooey-circle circle2"></div>
+          <div class="gooey-circle circle3"></div>
+        </div>
+        <svg class="gooey-svg">
+          <filter id="gooey-effect">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="10" />
+            <feColorMatrix
+              values="
+            1 0 0 0 0
+            0 1 0 0 0
+            0 0 1 0 0
+            0 0 0 20 -10
+            "
+            />
+          </filter>
+        </svg> -->
+
+        <!-- test -->
+        <div class="gooey-container">
+          <div class="gooey-circles">
+            <div class="gooey-circle"></div>
+            <div class="gooey-circle"></div>
+            <div class="gooey-circle"></div>
+          </div>
+        </div>
+
+        <svg style="display: none">
+          <defs>
+            <filter id="filter">
+              <feGaussianBlur
+                in="SourceGraphic"
+                stdDeviation="10"
+                result="blur"
+              />
+              <feColorMatrix
+                in="blur"
+                mode="matrix"
+                values="
+                1 0 0 0 0  
+                0 1 0 0 0  
+                0 0 1 0 0  
+                0 0 0 19 -9"
+                result="filter"
+              />
+              <feComposite in="SourceGraphic" in2="filter" operator="atop" />
+            </filter>
+          </defs>
+        </svg>
+
+        <!-- test end -->
 
         <section class="hero" id="home">
           <div class="hero-container">
@@ -170,13 +254,12 @@
             />
             <h2 class="hero-text">
               👋 My name is <span class="name-text">Abrar Akhand</span>, I'm a
-              Computer Science graduate based in Gilbert, Arizona. I enjoy
-              creating apps and fiddling with new tech. Look below to view my
-              skills and projects.
+              Computer Science graduate based in Arizona. I enjoy creating apps
+              and fiddling with new tech. Look below to view my skills and
+              projects.
             </h2>
           </div>
           <!-- TODO: Add the frosted glass effect -->
-          <div class="frosted-glass"></div>
         </section>
 
         <!-- Top Nav elements -->

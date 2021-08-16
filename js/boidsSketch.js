@@ -17,7 +17,7 @@ function setup() {
     var cnv = createCanvas(winWidth, winHeight);
 
     cnv.style('display', 'block');
-    cnv.style('top', '-10px');
+    cnv.style('top', '-15px');
     cnv.style('position', 'absolute');
     cnv.style('z-index', '-3');
     cnv.parent('boids-sketch');
