@@ -1,0 +1,802 @@
+// sass --watch app/sass:public/stylesheets
+
+$size: random(700);
+
+@font-face {
+  font-family: "weeblysleek";
+  src: url("./assets/fonts/weblysleekuil.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "weeblysleek";
+  src: url("./assets/fonts/weblysleekuisb.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+
+  /*Removes scroll bar (default is content-box)*/
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+
+  /* *** Makes it so 1rem = 10px *** */
+
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Roboto Mono", monospace;
+  /* display: flex; */
+}
+
+/* .gooey-circles-container {
+    background: black;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    z-index: 1;
+    filter: url(#gooey-effect);
+  } */
+
+/* TEST -----------------------------------------------------------*/
+
+.gooey-container {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 20vw;
+  height: 100vh;
+  display: flex;
+
+  background: gray;
+}
+
+.gooey-circles {
+  width: 20vw;
+  position: relative;
+  filter: url(#filter);
+}
+
+.gooey-circle {
+  transform: translateY(0px);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+
+  background: #ff0000;
+  border-radius: 50%;
+}
+
+.gooey-circle:nth-child(1) {
+  position: relative;
+
+  background: green;
+  transform: translateX(-50%);
+  animation: gooey-size cubic-bezier(0.37, 0, 0.63, 1) infinite 10s,
+    gooey-move ease-in-out infinite 10s;
+}
+
+.gooey-circle:nth-child(2) {
+  position: relative;
+
+  background: rgb(48, 93, 121);
+  transform: translateX(-50%);
+  animation: gooey-size cubic-bezier(0.37, 0, 0.63, 1) infinite 5s,
+    gooey-move ease-in-out infinite 5s, gooey-opacity ease-in-out infinite 5s;
+}
+
+.gooey-circle:nth-child(3) {
+  position: relative;
+
+  background: rgb(121, 92, 48);
+  transform: translateX(-50%);
+  animation: gooey-size cubic-bezier(0.37, 0, 0.63, 1) infinite 5s,
+    gooey-move ease-in-out infinite 5s, gooey-opacity ease-in-out infinite 5s;
+}
+
+svg.gooey-svg {
+  width: 0;
+  height: 0;
+}
+
+@keyframes gooey-size {
+  25%,
+  75% {
+    transform: scale(1);
+  }
+  0%,
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes gooey-opacity {
+  25%,
+  75% {
+    opacity: 1;
+  }
+  0%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes gooey-move {
+  0% {
+    transform: translateY(0rem);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+/* .webpage-root-element {
+    position: relative;
+  } */
+
+/* Nav styling */
+nav {
+  position: fixed;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+  min-height: 6rem;
+  background: rgb(255, 247, 236);
+  z-index: 50;
+}
+
+nav > * {
+  margin: 0 3rem;
+}
+
+.nav-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  list-style-type: none;
+}
+
+.nav-buttons li,
+.nav-button h4 {
+  font-weight: normal;
+  font-style: normal;
+  letter-spacing: 0.4rem;
+  font-size: 1.1rem;
+}
+
+/* Using font awesome's pdf icon */
+.resume-button::after {
+  font-family: "Font Awesome 5 Free";
+  content: "           \f1c1";
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  font-size: 1.5rem;
+  -webkit-font-smoothing: antialiased;
+  right: -0.75rem;
+}
+
+.nav-button {
+  position: relative;
+  cursor: pointer;
+  padding: 1rem;
+  margin: 0.5rem;
+
+  z-index: 1;
+}
+
+/* 
+    Before does styling before "content" is displayed, allows you do stuff without effecting the actual content like below for the underline effect 
+  */
+.nav-button::before {
+  /* content has to be set to something or else it defaults to none and it wont be displayed */
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 0;
+  bottom: 1.6rem;
+  left: 0;
+  background-color: rgb(179, 108, 108);
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+/*
+     : is for psuedo class like "hover",
+    :: is for psuedo elements like "before" and "after" 
+  */
+
+.nav-button:hover::before {
+  visibility: visible;
+  opacity: 1;
+  height: 0.3rem;
+}
+
+.nav-button:hover {
+  /* text-decoration-color: black;
+    border-bottom: 1rem solid rgb(0, 0, 0); */
+}
+
+/* img.side-bar-button {
+    cursor: pointer;
+    padding-top: 1rem;
+  } */
+
+/* .page-content {
+    position: relative;
+    
+  
+    
+    left: 40px;
+    
+    width: calc(100%);
+  
+    
+  } */
+
+/* Hero section styling */
+
+.hero {
+  background: none;
+
+  min-height: 100vh;
+  width: 100vw;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  background: linear-gradient(to top, rgba(149, 149, 149), transparent 15%);
+}
+
+.hero-container {
+  display: flex;
+  flex-direction: row;
+  min-width: 300px;
+  max-width: 100rem;
+  align-items: center;
+
+  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.22);
+
+  transform: rotate(1.2deg);
+}
+
+.hero-image {
+  display: flex;
+
+  margin: 0;
+  padding: 3.5rem;
+  width: 300px;
+  display: block;
+}
+
+.hero-text {
+  font-family: "weeblysleek";
+  color: black;
+  text-shadow: 0 0 5px #858585e3;
+  font-size: calc(1rem + 1.2vw);
+  display: block;
+
+  margin: 0;
+  font-weight: 300;
+  line-height: calc(3rem + 1vw);
+
+  padding: 3rem;
+}
+
+.name-text {
+  text-shadow: none;
+  font-family: "Permanent Marker", cursive;
+  color: #f44546;
+}
+
+/* Hero Boids Background Styling */
+
+#boids-sketch,
+#defaultCanvas0 {
+  position: absolute;
+  z-index: -1;
+}
+
+/* Top nav styling (Desktop only) */
+
+.top-nav-container {
+  width: calc(100vw - 80px);
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  top: 1px;
+  justify-content: center;
+  z-index: 10;
+  height: 100px;
+
+  display: none;
+}
+
+.top-nav-btn {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 1rem 10vw;
+  background: none;
+
+  opacity: 1;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.top-nav-img-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  animation: TopNavIdle 2s ease-in-out infinite;
+}
+
+.top-nav-image1,
+.top-nav-image2 {
+  position: relative;
+  width: 10rem;
+}
+
+.top-nav-image1 {
+  top: 3rem;
+}
+
+.top-nav-image2 {
+  top: -3rem;
+}
+
+.top-nav-text {
+  position: relative;
+  /* move nav text higher */
+  top: -6rem;
+  font-family: "weeblysleek";
+  font-size: 2.75rem;
+  text-align: center;
+}
+
+.top-nav-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-20vh);
+}
+
+/* Bottom Nav Styling (Desktop only) */
+
+.bottom-nav-container {
+  width: calc(100vw - 80px);
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  bottom: 1px; /* Was 80vh */
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  height: 100px;
+}
+
+.bottom-nav-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 1rem 10vw;
+  z-index: 2;
+  background: none;
+
+  opacity: 1;
+  /* Smooth appear/disappear transition */
+  transition: opacity 0.4s ease, transform 0.4s ease, color 0.3s ease;
+}
+
+.bottom-nav-btn:hover {
+  color: #3c3c50;
+}
+
+.btm-nav-text {
+  position: relative;
+  /* Lower nav text a bit */
+  bottom: -5.5rem;
+  font-family: "weeblysleek";
+  font-size: 2.75rem;
+  text-align: center;
+}
+
+.btm-nav-img-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  animation: BtmNavIdle 2s ease-in-out infinite;
+}
+
+.btm-nav-image1,
+.btm-nav-image2 {
+  position: relative;
+  width: 10rem;
+}
+
+.btm-nav-image1 {
+  bottom: -3.5rem;
+}
+
+.btm-nav-image2 {
+  bottom: 2.5rem;
+}
+
+.bottom-nav-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20vh);
+}
+
+/* Skills section styling */
+
+.skills-section {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 100vh;
+  /* TODO: Since height was removed, change scroll position code in main.js */
+
+  /* background: darkslategray; */
+  background-image: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 1em,
+      #27272725 50%
+    ),
+    repeating-linear-gradient(45deg, #bdbdbd, #bdbdbd 1em, transparent 1em),
+    repeating-linear-gradient(45deg, #ff5757 1em, #ff5757 50%);
+  background-size: 3em 3em, 2em 2em;
+}
+
+.skills-section:before {
+  background: linear-gradient(-45deg, transparent 16px, #949494 0),
+    linear-gradient(45deg, transparent 16px, #949494 0);
+  background-repeat: repeat-x;
+  background-position: left bottom;
+  background-size: 22px 32px;
+  content: "";
+  display: block;
+
+  width: 100%;
+  height: 32px;
+
+  position: relative;
+  bottom: 0px;
+  left: 0px;
+}
+
+.skill-category-bg {
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+/* .page-transition-color {
+    min-height: 100vh;
+    width: 100vw;
+  
+    position: absolute;
+    z-index: 1;
+  } */
+
+.section-title {
+  display: flex;
+
+  margin: 7rem 0rem 5rem 0rem;
+
+  height: 8rem;
+  width: 20rem;
+  font-size: 3.25rem;
+
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  align-self: center;
+
+  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.22);
+
+  z-index: 5;
+}
+
+.skills-section-title {
+  transform: rotate(-1.25deg);
+}
+
+.skills-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-basis: 1rem;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 100%;
+  width: 85%;
+  align-self: center;
+  padding: 0rem;
+}
+
+.skill-category {
+  margin: 30px auto;
+
+  height: 55rem;
+  width: 40rem;
+  border-radius: 1.5rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.category-title {
+  padding: 1rem;
+  margin: 1rem;
+
+  text-align: center !important;
+}
+
+.category-title h3 {
+  font-family: "weeblysleek";
+  color: black;
+  font-size: 2.5rem;
+
+  /* font-family: "Permanent Marker", cursive; */
+  /* font-size: 2.5rem;
+    font-weight: 100; */
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  text-align: center;
+  align-self: center;
+  padding: 3rem 0 0 0;
+}
+
+.skills-list {
+  background: none;
+  position: relative;
+  left: 3rem;
+
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: center;
+
+  width: inherit;
+
+  list-style: none;
+}
+
+.skills-list p {
+  background: none;
+
+  color: #000000;
+
+  font-family: inherit;
+  font-size: 1.8rem;
+
+  margin: 0.5rem 1.5rem;
+  background: rgba(231, 251, 45, 0.404);
+  padding: 0, 1rem;
+}
+
+.list-bullet {
+  font-size: 3rem;
+}
+
+/* Projects section styling */
+
+.projects-section {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 100vh;
+  align-items: center;
+
+  background: linear-gradient(27deg, #171717 5px, transparent 5px) 0 5px,
+    linear-gradient(207deg, #171717 5px, transparent 5px) 10px 0px,
+    linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+    linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+    linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+    linear-gradient(
+      #1d1d1d 25%,
+      #1a1a1a 25%,
+      #1a1a1a 50%,
+      transparent 50%,
+      transparent 75%,
+      #242424 75%,
+      #242424
+    );
+  background-color: #171717;
+  background-size: 20px 20px;
+  height: 100vh;
+}
+
+.project-category-bg {
+  position: absolute;
+  width: 100%;
+  min-height: 500px;
+  background: linear-gradient(to bottom, #171717, transparent 15%);
+
+  /* background: linear-gradient(27deg, #171717 5px, transparent 5px) 0 5px,
+      linear-gradient(207deg, #171717 5px, transparent 5px) 10px 0px,
+      linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+      linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+      linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+      linear-gradient(
+        #1d1d1d 25%,
+        #1a1a1a 25%,
+        #1a1a1a 50%,
+        transparent 50%,
+        transparent 75%,
+        #242424 75%,
+        #242424
+      );
+    background-color: #171717;
+    background-size: 20px 20px;
+    height: 100vh; */
+}
+
+.projects-section:before {
+  background: linear-gradient(-45deg, #171717 16px, transparent 0),
+    linear-gradient(45deg, #171717 16px, transparent 0);
+  background-position: left top;
+  background-repeat: repeat-x;
+  background-size: 22px 32px;
+  content: "";
+  display: block;
+
+  height: 32px;
+  width: 100%;
+
+  position: relative;
+  bottom: 2rem;
+  left: 0;
+}
+
+.projects-section-title {
+  transform: rotate(1.25deg);
+}
+
+/* Graph Paper effect */
+
+.skills-section-title,
+.projects-section-title,
+.hero-container,
+.skill-category {
+  background-color: #eaeaea;
+
+  background-image: -webkit-repeating-linear-gradient(
+      90deg,
+      rgba(0, 191, 255, 0.2),
+      rgba(0, 191, 255, 0.2) 1px,
+      solid 1px,
+      solid 15px
+    ),
+    -webkit-repeating-linear-gradient(0deg, rgba(255, 105, 180, 0.2), rgba(
+            255,
+            105,
+            180,
+            0.2
+          )
+          1px, solid 1px, solid 15px);
+  background-image: -moz-repeating-linear-gradient(
+      90deg,
+      rgba(0, 191, 255, 0.2),
+      rgba(0, 191, 255, 0.2) 1px,
+      solid 1px,
+      solid 15px
+    ),
+    -moz-repeating-linear-gradient(0deg, rgba(255, 105, 180, 0.2), rgba(
+            255,
+            105,
+            180,
+            0.2
+          )
+          1px, solid 1px, solid 15px);
+  background-image: -o-repeating-linear-gradient(
+      90deg,
+      rgba(0, 191, 255, 0.2),
+      rgba(0, 191, 255, 0.2) 1px,
+      solid 1px,
+      solid 15px
+    ),
+    -o-repeating-linear-gradient(0deg, rgba(255, 105, 180, 0.2), rgba(
+            255,
+            105,
+            180,
+            0.2
+          )
+          1px, solid 1px, solid 15px);
+  background-image: repeating-linear-gradient(
+      90deg,
+      rgba(0, 191, 255, 0.2),
+      rgba(0, 191, 255, 0.2) 1px,
+      transparent 1px,
+      transparent 15px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 105, 180, 0.2),
+      rgba(255, 105, 180, 0.2) 1px,
+      transparent 1px,
+      transparent 15px
+    );
+}
+
+/* Animations */
+
+@keyframes BtmNavIdle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+@keyframes TopNavIdle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .social-side-bar,
+  .social-side-bar * {
+    display: none;
+  }
+
+  .hero-container {
+    width: 100px;
+    flex-direction: column;
+    min-width: 250px;
+  }
+
+  .hero-image {
+    width: 125px;
+    padding: 2.5rem 0 2rem 0;
+  }
+
+  .hero-text {
+    width: 250px;
+    font-size: calc(1rem + 0.75vw);
+
+    margin: 0;
+    font-weight: 300;
+    line-height: calc(2rem + 1vw);
+
+    padding: 0rem 2.5rem 2rem 2rem;
+  }
+}

@@ -156,6 +156,12 @@ $(document).ready(function () {
         }
 
     });
+
+    $('.gooey-circles').children('.gooey-circle').each(function () {
+        let size = ((Math.random() * 250) + 50);
+        console.log($(this));
+        $(this).css({ 'width': size + 'px', 'height': size + 'px' })
+    });
 });
 
 // Change visibility of the buttons based on page the user is on
